@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <button id="btn-task1" onclick="displayTask('task1')">Project 1</button>
+            <button id="btn-task2" onclick="displayTask('task2')">Project 2</button>
+            <button id="btn-task3" onclick="displayTask('task3')">Project 3</button>
+        </div>
+        <div class="content" id="content">
+            <h2>Welcome!</h2>
+            <p>Select a project to view its details.</p>
+        </div>
+    </div>
+
+    <script>
+        const works = {
+            "task1": { "title": "Project 1", "content": "This is the content of Project 1." },
+            "task2": { "title": "Project 2", "content": "This is the content of Project 2." },
+            "task3": { "title": "Project 3", "content": "This is the content of Project 3." }
+        };
+
+        function displayTask(taskKey) {
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = `<h2>${works[taskKey].title}</h2><p>${works[taskKey].content}</p>`;
+            
+            // Reset button colors
+            document.querySelectorAll('.sidebar button').forEach(btn => btn.classList.remove('active'));
+            
+            // Highlight active button
+            document.getElementById(`btn-${taskKey}`).classList.add('active');
+        }
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+        }
+        .sidebar {
+            width: 200px;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .sidebar button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            cursor: pointer;
+        }
+        .sidebar button.active {
+            background: #007bff;
+            color: #fff;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+    </style>
+</body>
+</html>
